@@ -113,23 +113,41 @@ const data = [
 
 */
 
-function createArticle(title, date, content, button){
+const articles = document.querySelector('.articles');
+
+data.forEach(data => {
+  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+});
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
   const articleDiv = document.createElement('div');
-  articleDiv.classList.add('article');
   const articleTitle = document.createElement('h2');
-  articleTitle.classList.add('h2');
   const articleDate = document.createElement('p');
-  articleDate.classList.add('date');
-  const articleContent = document.createElement('p')
-  articleContent.classList.add(p);
+  const articleFirstParagraph = document.createElement('p');
+  const articleSecondParagraph = document.createElement('p');
+  const articleThirdParagraph = document.createElement('p')
   const articleButton =  document.createElement('span');
+  
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleFirstParagraph.textContent = firstParagraph;
+  articleSecondParagraph.textContent =  secondParagraph;
+  articleThirdParagraph.textContent = thirdParagraph;
+
+  articleDiv.appendChild(articleTitle,articleDate,articleFirstParagraph, articleSecondParagraph, articleThirdParagraph,articleButton);
+
+  articleDiv.classList.add('article');
+  articleDate.classList.add('date');
   articleButton.classList.add('expandButton');
 
-  articleDiv.append(articleTitle,articleDate,articleContent,articleButton);
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+
+  articleButton.addEventListener('click',() => {
+    buttonOpen.classList.toggle('expandButton');
+  })
+  
   return articleDiv;
 }
 
-const containter = document.querySelector('.container');
-data.forEach(data => {
-  containter.appendChild(createArticle(data.title, data.data, data.content, data.button));
-});
+
