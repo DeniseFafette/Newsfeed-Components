@@ -115,8 +115,8 @@ const data = [
 
 const articles = document.querySelector('.articles');
 
-data.forEach(data => {
-  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+data.forEach(item => {
+  articles.appendChild(createArticle(item.title,item.date,item.firstParagraph,item.secondParagraph, item.thirdParagraph));
 });
 
 function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
@@ -133,21 +133,21 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   articleFirstParagraph.textContent = firstParagraph;
   articleSecondParagraph.textContent =  secondParagraph;
   articleThirdParagraph.textContent = thirdParagraph;
+  articleButton.textContent = 'expand'
 
-  articleDiv.appendChild(articleTitle,articleDate,articleFirstParagraph, articleSecondParagraph, articleThirdParagraph,articleButton);
+  articleDiv.append(articleTitle,articleDate,articleFirstParagraph,articleSecondParagraph,articleThirdParagraph,articleButton);
+
 
   articleDiv.classList.add('article');
   articleDate.classList.add('date');
   articleButton.classList.add('expandButton');
 
-  articleTitle.textContent = title;
-  articleDate.textContent = date;
-
   articleButton.addEventListener('click',() => {
-    buttonOpen.classList.toggle('expandButton');
+    articleDiv.classList.toggle('article-open');
   })
   
   return articleDiv;
+
 }
 
-
+console.log(createArticle);
